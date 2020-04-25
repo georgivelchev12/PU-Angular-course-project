@@ -1,0 +1,14 @@
+@import './variables';
+
+.main-color-bg{
+    background: $main-color;
+}
+.secondary-color-bg{
+    background: $secondary-color;
+}
+.bg-dark{
+    background-color: $dark-color !important;
+}
+.border-info{
+    border-color: $secondary-color !important;;
+}
