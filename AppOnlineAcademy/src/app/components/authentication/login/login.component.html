@@ -1,33 +1,28 @@
-<div class="row w-100 vh-100 m-0">
-  <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 bg-dark d-flex justify-content-center align-items-start p-0">
-    <div class="d-flex flex-column justify-content-center align-items-center w-100 mt-5">
-        <img src="assets/img/logo.png" width="150" height="150" class="mt-5 mb-3">
-      <div class="w-75 text-white d-flex flex-column justify-content-center align-items-center mb-5">
-        <form class="w-100">
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Email address</label>
-              <input type="email" class="form-control bg-transparent border border-info text-white">
-            </div>
-            <div class="form-group" >
-              <label>Password</label>
-              <input type="password" class="form-control bg-transparent border border-info text-white">
-            </div>
-            <button class="btn-main mt-5">
-                Sign In
-            </button>
-          </form>
-
-          <div class="or my-3">
-            <hr class="bar">
-            <span> OR </span>
-            <hr class="bar">
-        </div>
-        <a href="#" class="btn-secondary-2">Create an account</a>
-      </div>
-      <app-footer class="mt-5"></app-footer>
+<div class="text-white d-flex flex-column justify-content-center align-items-center mb-5">
+  <form class="w-100">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Email address</label>
+      <input
+        type="email"
+        class="form-control bg-transparent border border-info text-white"
+      />
     </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        type="password"
+        class="form-control bg-transparent border border-info text-white"
+      />
+    </div>
+    <button class="btn-main mt-4">
+      Sign In
+    </button>
+  </form>
+
+  <div class="or my-3">
+    <hr class="bar" />
+    <span> OR </span>
+    <hr class="bar" />
   </div>
-  <div class="col-lg-7 col-md-6 d-none d-sm-block">
-      kak si
-  </div>
+  <a [routerLink]="['/register']"  class="btn-secondary-2">Create an account</a>
 </div>

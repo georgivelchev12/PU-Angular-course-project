@@ -1,1 +1,52 @@
-<p>register works!</p>
+ <div
+   class="text-white d-flex flex-column justify-content-center align-items-center mb-5"
+ >
+   <form class="w-100">
+       <!-- dont forget name attribute for form -->
+     <div class="form-group">
+       <label>Email address</label>
+       <input
+         type="email"
+         class="form-control bg-transparent border border-info text-white"
+       />
+     </div>
+     <div class="form-group">
+       <label>First name</label>
+       <input
+         type="text"
+         class="form-control bg-transparent border border-info text-white"
+       />
+     </div>
+     <div class="form-group">
+       <label>Last name</label>
+       <input
+         type="text"
+         class="form-control bg-transparent border border-info text-white"
+       />
+     </div>
+     <div class="form-group">
+       <label>Password</label>
+       <input
+         type="password"
+         class="form-control bg-transparent border border-info text-white"
+       />
+     </div>
+     <div class="form-group">
+       <label>Confirm password</label>
+       <input
+         type="password"
+         class="form-control bg-transparent border border-info text-white"
+       />
+     </div>
+     <button class="btn-main mt-4">
+       Sign Up
+     </button>
+   </form>
+
+   <div class="or my-3">
+     <hr class="bar" />
+     <span> OR </span>
+     <hr class="bar" />
+   </div>
+   <a [routerLink]="['/login']"  class="btn-secondary-2">Login</a>
+ </div>

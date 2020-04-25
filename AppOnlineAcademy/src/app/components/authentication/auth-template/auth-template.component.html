@@ -1,0 +1,24 @@
+<div class="row w-100 vh-100 m-0">
+  <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 bg-dark d-flex justify-content-center align-items-center p-0" >
+    <div class="d-flex flex-column justify-content-center align-items-center w-100">
+      <img src="assets/img/logo.png" width="150" height="150" class="mb-3" />
+      <app-login class="w-75" *ngIf="router.url == '/login'"></app-login>
+      <app-register class="w-75" *ngIf="router.url == '/register'"></app-register>
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+  <div class="col-lg-7 col-md-6 d-none d-md-block showcase text-white" [class.toggler]="router.url == '/register'">
+    <div class="overlay"></div>
+    <div class="showcase-content d-flex flex-column justify-content-center align-items-center w-100 h-100">
+      <h1 class="showcase-text mb-4 text-center" *ngIf="router.url == '/login'" >
+        Let's create the future <strong>together</strong>
+      </h1>
+      <h1 class="showcase-text mb-4 text-center" *ngIf="router.url == '/register'" >
+        Already have account?
+      </h1>
+      <a [routerLink]="['/register']" *ngIf="router.url == '/login'" class="btn-secondary-2">Become part of the most successful academy</a>
+      <a [routerLink]="['/login']" *ngIf="router.url == '/register'" class="btn-secondary-2">Login</a>
+    </div>
+  </div>
+</div>

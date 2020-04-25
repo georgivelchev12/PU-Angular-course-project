@@ -1,14 +1,84 @@
-@import './variables';
+@import "./variables";
 
-.main-color-bg{
-    background: $main-color;
+//overriten classes from bootstrap
+.bg-dark {
+  background-color: $dark-color !important;
 }
-.secondary-color-bg{
-    background: $secondary-color;
+.border-info {
+  border-color: $secondary-color !important;
 }
-.bg-dark{
-    background-color: $dark-color !important;
+
+//utilities
+.main-color-bg {
+  background: $main-color;
 }
-.border-info{
-    border-color: $secondary-color !important;;
+.secondary-color-bg {
+  background: $secondary-color;
+}
+
+.btn-main {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  display: block;
+  border: 1px solid $secondary-color;
+  border-radius: 2px;
+  font-weight: 500;
+  background: $secondary-color;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.btn-main:hover {
+  background-color: transparent;
+  border: 1px solid $white-color;
+}
+
+.btn-secondary-2 {
+  padding: 0.7rem 1rem;
+    
+  display: block;
+  color: white;
+  background: none;
+  border: 1px solid $white-color;
+  border-radius: 2px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none !important;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.btn-secondary-2:hover {
+  border-color: $secondary-color;
+  color: $secondary-color;
+}
+
+.btn-secondary-2,
+.or,
+.links {
+  width: 60%;
+  @include breakpoint(max, width, 400px) {
+    width: 85%;
+  }
+}
+
+.or {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.or .bar {
+  flex: auto;
+  border: none;
+  height: 1px;
+  background: #aaa;
+}
+
+.or span {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
 }

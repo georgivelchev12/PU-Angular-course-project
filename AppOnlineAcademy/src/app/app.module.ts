@@ -13,6 +13,8 @@ import { AuthenticationModule } from "./components/authentication/authentication
 import { CoursesModule } from "./components/courses/courses.module";
 import { AuthService } from "./core/services/auth-service";
 import { LoginComponent } from "./components/authentication/login/login.component";
+import { RegisterComponent } from './components/authentication/register/register.component';
+import { AuthTemplateComponent } from './components/authentication/auth-template/auth-template.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +28,8 @@ import { LoginComponent } from "./components/authentication/login/login.componen
     RouterModule.forRoot([
       { path: "", component: HomePageComponent, canActivate: [AuthGuard] },
       { path: "home", component: HomePageComponent, canActivate: [AuthGuard] },
-      { path: "login", component: LoginComponent },
+      { path: "login", component: AuthTemplateComponent },
+      { path: "register", component: AuthTemplateComponent },
       {
         path: "courses",
         canActivate: [AuthGuard],
