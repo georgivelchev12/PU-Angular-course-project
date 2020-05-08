@@ -1,10 +1,12 @@
 <div class="text-white d-flex flex-column justify-content-center align-items-center mb-5">
-  <form class="w-100">
+  <form class="w-100"  [formGroup]="form" (ngSubmit)="login()">
     <div class="form-group">
-      <label for="exampleFormControlInput1">Email address</label>
+      <label>Email address</label>
       <input
         type="email"
+        for="email"
         class="form-control bg-transparent border border-info text-white"
+        formControlName="username"
       />
     </div>
     <div class="form-group">
@@ -12,9 +14,10 @@
       <input
         type="password"
         class="form-control bg-transparent border border-info text-white"
+        formControlName="password"
       />
     </div>
-    <button class="btn-main mt-4">
+    <button class="btn btn-primary btn-main mt-4" type="submit" [disabled]="!form.valid">
       Sign In
     </button>
   </form>

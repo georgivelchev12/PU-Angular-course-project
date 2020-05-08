@@ -1,0 +1,9 @@
+.masthead {
+  background: url("/assets/img//header-image.jpg") no-repeat center center/cover;
+  .overlay{
+      background: rgba($color: #000000, $alpha: 0.5);
+      .row{
+          z-index: 1;
+      }
+  }
+}

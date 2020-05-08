@@ -1,0 +1,83 @@
+<div class="details-content container my-5 py-5" *ngIf="course">
+    <h1 class="title mb-4 text-primary d-md-none d-lg-none d-xl-none d-sm-block text-center mb-0">{{ course.title }}</h1>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-5 mb-3">
+            <div class="sidebar-content border p-3">
+                <div>
+                    <div class="teacher py-3 shadow mb-3 d-flex justify-content-center align-items-center text-white bg-primary" >
+                        <i class="fas fa-user-circle mr-3 display-4" ></i>
+                        <div class="teacher-inner">
+                            <p class="lead m-0">Teacher</p>
+                            <h3 class="m-0"> {{course.author}} </h3>
+                        </div>
+                    </div>
+                    <div class="shadow mb-3">
+                        <img class="w-100" src="{{course.imgUrl}}" alt="">
+                    </div>
+                    <div class="rating py-3 shadow mb-3 bg-light d-flex flex-column justify-content-center align-items-center">
+                        <p class="display-4 font-weight-bolder" style="color: orange;"> {{ averageRate }} </p>
+                        <div class="stars-outer d-inline-block h4">
+                            <div class="stars-inner" [style.width.%]="starsRating"></div> <!--#innerStars [ngStyle]="starsWidth"-->
+                        </div>
+                        <p class="lead"> {{course.rating.length}} Ratings</p>
+                        <div class="border-top my-3 mb-4 w-100"></div>
+                        <p>Slide to rate</p>
+                        <form class="w-100 px-4" (ngSubmit)="rate()">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <span>1</span>
+                                <input type="range" class="custom-range my-3 d-inline-block mx-3" min="1" max="5"  id="customRange" name="somth" [(ngModel)]="rateCourseNum"> 
+                                <span>5</span>
+                            </div>
+                            <button type="submit" class="btn btn-warning my-3" [disabled]="isAlreadyRated || (loaderService.isLoading | async)">{{!isAlreadyRated ? 'Rate course with ' + rateCourseNum : 'Rated!'}} </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-7 mb-3">
+            <h1 class="title mb-4 text-primary d-none d-sm-none d-md-block"> {{course.title}} </h1>
+            <div class="row m-0">
+                <div class="col-sm-12 col-md-12 col-lg-4 border-left my-2 text-secondary" >
+                    <span class="d-block">Categories <i class="fas fa-th"></i></span>
+                    <strong> {{course.categories.join(', ')}}</strong>
+                </div>
+        
+                <div class="col-sm-12 col-md-12 col-lg-4 border-left my-2" style="color: #ff6877;">
+                    <span class="d-block">Likes <i class="far fa-heart"></i></span>
+                    <strong> {{course.likes.length}} </strong>
+                </div>
+        
+                <div class="col-sm-12 col-md-12 col-lg-4 border-left my-2 text-info">
+                    <span class="d-block">Publ. date <i class="far fa-calendar"></i></span>
+                    <strong> {{course.date}} </strong>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                </div>
+                <div class="col-md-12">
+                    <h2 class="title mb-3">Description</h2>
+                    <p class="lead"> {{course.description}} </p>
+                </div>
+               <div class="col-md-12 mt-3">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button class="btn btn-outline-danger" type="button" [disabled]="loaderService.isLoading | async"  (click)="likeOrDislike()">
+                        {{!isAlreadyLiked ? 'Like' : 'Dislike'}} 
+                        <i class="far fa-heart" *ngIf="!isAlreadyLiked"></i>
+                        <i class="far fa-thumbs-down" *ngIf="isAlreadyLiked"></i>
+                        <span *ngIf="loaderService.isLoading | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+                      </button>
+                    <a routerLink="/courses/edit/{{courseId}}" class="btn btn-warning" *ngIf="authService.checkIfSubscriber()">Edit</a>
+                    <a class="btn btn-danger" *ngIf="authService.checkIfSubscriber()" (click)="deleteCourse()">Delete</a>
+                </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="full-wh-spinner" *ngIf="loaderService.isLoading | async">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+</div> -->

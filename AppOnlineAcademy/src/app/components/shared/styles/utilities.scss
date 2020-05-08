@@ -1,4 +1,7 @@
 @import "./variables";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/_variables";
+
 
 //overriten classes from bootstrap
 .bg-dark {
@@ -6,6 +9,9 @@
 }
 .border-info {
   border-color: $secondary-color !important;
+}
+.btn:disabled{
+  cursor: no-drop;
 }
 
 //utilities
@@ -81,4 +87,70 @@
 .or span {
   padding-left: 0.8rem;
   padding-right: 0.8rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.stars-outer {
+  position: relative;
+  &:before {
+    content: "\f005 \00a0 \f005 \00a0 \f005 \00a0 \f005 \00a0 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #ccc;
+  }
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    &:before {
+      content: "\f005 \00a0 \f005 \00a0 \f005 \00a0 \f005 \00a0 \f005";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      color: orange;
+    }
+  }
+}
+
+.full-wh-spinner{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #fff, $alpha: 0.7);
+  top: 0;
+  .spinner-border{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spinner-border .75s linear infinite,
+               toggleColors 3s linear infinite;
+  }
+}
+
+@keyframes toggleColors {
+  0% {
+    color: $blue;
+  }
+  20%{
+    color: $cyan;
+  }
+  40%{
+    color: $purple;
+  }
+  60%{
+    color: $pink;
+  }
+  80% {
+    color: $orange;
+  }
+  100%{
+    color: $green;
+  }
 }
