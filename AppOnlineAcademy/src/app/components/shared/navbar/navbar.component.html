@@ -13,9 +13,6 @@
         <li class="nav-item active">
           <a class="nav-link" [routerLink]="['/home']">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">Courses
@@ -23,7 +20,7 @@
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <a routerLink="/courses/create" class="dropdown-item text-success" *ngIf="authService.checkIfSubscriber()">Create New Course</a>
             <a class="dropdown-item" routerLink="/courses">View All</a>
-            <a class="dropdown-item" href="#">Favourites</a>
+            <a class="dropdown-item" routerLink="/courses/favourites">Favourites</a>
           </div>
         </li>
       </ul>
@@ -35,7 +32,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default"
             aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="#">My Account</a>
+            <a class="dropdown-item" (click)="isShown = !isShown">My Account</a>
             <a class="dropdown-item" href="#" *ngIf="authService.checkIfSubscriber()">Users Profiles</a>
             <a class="dropdown-item" routerLink="/login" (click)="logout()" >Logout</a>
           </div>
@@ -45,3 +42,5 @@
 </div>
   </nav>
   <!--/.Navbar -->
+  
+  <app-my-profile *ngIf="isShown"></app-my-profile>

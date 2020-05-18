@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
   }
   register() {
     this.model = this.form.value;
+    this.model.date = new Date().toLocaleDateString().split(' ')[0];
     delete this.model["confirmPassword"];
     this.authService.register(this.model).subscribe(
       (data) => {

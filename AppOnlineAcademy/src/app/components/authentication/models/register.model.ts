@@ -4,6 +4,7 @@ export class RegisterModel {
       public password: string,
       public firstName: string,
       public lastName: string,
+      public date: string
     ) {}
   }
   

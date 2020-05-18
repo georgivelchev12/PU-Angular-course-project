@@ -7,6 +7,7 @@ const appSecret = `da1610108229464ea57a6d73b5f490d7`;
 const registerUrl = `https://baas.kinvey.com/user/${appKey}`;
 const loginUrl = `https://baas.kinvey.com/user/${appKey}/login`;
 const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
+const profileUrl = `https://baas.kinvey.com/user/${appKey}/`; //: id
 
 @Injectable()
 export class AuthService {
@@ -26,6 +27,11 @@ export class AuthService {
   logout() {
     return this.http.post(logoutUrl, {});
   }
+
+  myProfile(id){
+    return this.http.get(profileUrl + id, {})
+  }
+
   assignRole(userID) {
     const roleUrl = `https://baas.kinvey.com/user/${appKey}/${userID}/roles/a9e711ad-d0ef-466f-b700-3495cd188ddf`;
     return this.http.put(roleUrl, {});

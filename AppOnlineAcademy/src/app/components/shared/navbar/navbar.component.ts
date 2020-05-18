@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/core/services/auth-service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
+  isShown: boolean = false;
   constructor(public authService: AuthService,public router: Router, ) { }
 
   ngOnInit() {

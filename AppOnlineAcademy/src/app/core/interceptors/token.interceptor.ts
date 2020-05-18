@@ -84,7 +84,7 @@ export class TokenInterceptor implements HttpInterceptor {
     localStorage.setItem("email", data["username"]);
     localStorage.setItem("name", `${data["firstName"]} ${data["lastName"]}`);
     localStorage.setItem("isSubscriber", data["_kmd"]["roles"]);
-
+    localStorage.setItem('id', data['_id'])
     this.router.navigateByUrl("/home");
   }
 }

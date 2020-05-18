@@ -4,13 +4,15 @@ import { RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 
+import { MyProfileComponent } from './my-profile/my-profile.component';
 import { FooterComponent } from "./footer/footer.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from 'src/app/core/interceptors/loading.interceptor';
 import { LoaderService } from 'src/app/core/services/loading-service';
+
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent],
+  declarations: [NavbarComponent, FooterComponent, MyProfileComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -22,6 +24,7 @@ import { LoaderService } from 'src/app/core/services/loading-service';
     FooterComponent,
     BrowserAnimationsModule,
     ToastrModule,
+    MyProfileComponent
   ],
   providers:[
     LoaderService,

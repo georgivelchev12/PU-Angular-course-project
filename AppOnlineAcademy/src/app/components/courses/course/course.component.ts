@@ -36,21 +36,28 @@ export class CourseComponent implements OnInit, OnDestroy {
     private toastr: ToastrService
   ) {}
 
-
   ngOnInit() {
-    
     this.courseId = this.course["_id"];
-    this.averageRate = this.course.rating.length > 0 ? Number((this.course.rating.reduce((a, b) => a + b['rate'], 0) / this.course.rating.length).toFixed(1)) : 0;
-    this.starsRating = this.course.rating.length !== 0 
-                          ? Math.round((this.averageRate / 5) * 100) 
-                          : 0;
-    this.isAlreadyLiked = this.course.likes.includes(localStorage.getItem('email'))
-
-
+    this.averageRate =
+      this.course.rating.length > 0
+        ? Number(
+            (
+              this.course.rating.reduce((a, b) => a + b["rate"], 0) /
+              this.course.rating.length
+            ).toFixed(1)
+          )
+        : 0;
+    this.starsRating =
+      this.course.rating.length !== 0
+        ? Math.round((this.averageRate / 5) * 100)
+        : 0;
+    this.isAlreadyLiked = this.course.likes.includes(
+      localStorage.getItem("email")
+    );
   }
   ngOnDestroy() {}
 
-  listAll(){
+  listAll() {
     this.coursesService.listAll().subscribe(
       (data) => {
         this.courses.emit(data);
@@ -69,9 +76,9 @@ export class CourseComponent implements OnInit, OnDestroy {
     );
     this.listAll();
   }
-  likeOrDislike(){
+  likeOrDislike() {
     if (!this.isAlreadyLiked) {
-      this.course.likes.push(localStorage.getItem('email'));
+      this.course.likes.push(localStorage.getItem("email"));
       this.coursesService.edit(this.courseId, this.course).subscribe(
         (data) => {
           this.toastr.success("You liked the course successfully", "Success!");
@@ -80,12 +87,17 @@ export class CourseComponent implements OnInit, OnDestroy {
           this.toastr.error(err.error.description, "Error!");
         }
       );
-    } else{
-      let indexOfName = this.course.likes.indexOf(localStorage.getItem('email'));
-      this.course.likes.splice(indexOfName,1);
+    } else {
+      let indexOfName = this.course.likes.indexOf(
+        localStorage.getItem("email")
+      );
+      this.course.likes.splice(indexOfName, 1);
       this.coursesService.edit(this.courseId, this.course).subscribe(
         (data) => {
-          this.toastr.success("You disliked the course successfully", "Success!");
+          this.toastr.success(
+            "You disliked the course successfully",
+            "Success!"
+          );
         },
         (err) => {
           this.toastr.error(err.error.description, "Error!");
