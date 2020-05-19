@@ -10,6 +10,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from 'src/app/core/interceptors/loading.interceptor';
 import { LoaderService } from 'src/app/core/services/loading-service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [NavbarComponent, FooterComponent, MyProfileComponent],
@@ -18,6 +19,8 @@ import { LoaderService } from 'src/app/core/services/loading-service';
     RouterModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,

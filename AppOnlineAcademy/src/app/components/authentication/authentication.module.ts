@@ -9,9 +9,10 @@ import { AuthTemplateComponent } from "./auth-template/auth-template.component";
 import { RouterModule } from "@angular/router";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "src/app/core/interceptors/token.interceptor";
+import { UsersProfilesComponent } from './users-profiles/users-profiles.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, AuthTemplateComponent],
+  declarations: [LoginComponent, RegisterComponent, AuthTemplateComponent, UsersProfilesComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,7 +20,7 @@ import { TokenInterceptor } from "src/app/core/interceptors/token.interceptor";
     RouterModule,
     ReactiveFormsModule,
   ],
-  exports: [LoginComponent, RegisterComponent],
+  exports: [LoginComponent, RegisterComponent, UsersProfilesComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

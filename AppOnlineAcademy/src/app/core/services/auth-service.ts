@@ -28,13 +28,26 @@ export class AuthService {
     return this.http.post(logoutUrl, {});
   }
 
-  myProfile(id){
-    return this.http.get(profileUrl + id, {})
+  myProfile(id) {
+    return this.http.get(profileUrl + id, {});
   }
 
   assignRole(userID) {
     const roleUrl = `https://baas.kinvey.com/user/${appKey}/${userID}/roles/a9e711ad-d0ef-466f-b700-3495cd188ddf`;
     return this.http.put(roleUrl, {});
+  }
+  getUsers(){
+    return this.http.get(registerUrl);
+  }
+  changeNames(userID, model) {
+    return this.http.put(registerUrl + "/" + userID, JSON.stringify(model));
+  }
+  deleteOrBlockUser(userID, softOrHard) {
+    return this.http.delete(registerUrl + "/" + userID + softOrHard);
+  }
+  restoreProfile(userID){
+    return this.http.post(registerUrl + "/" + userID + '/_restore', {});
+
   }
 
   checkIfLogged() {
@@ -42,7 +55,7 @@ export class AuthService {
     return localStorage.getItem("authtoken") !== null;
   }
   checkIfSubscriber() {
-    return localStorage.getItem("isSubscriber") == 'undefined'; // if its not subscriber
+    return localStorage.getItem("isSubscriber") == "undefined"; // if its not subscriber
   }
 
   get authtoken() {

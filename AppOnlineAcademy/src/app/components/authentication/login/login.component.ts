@@ -15,11 +15,8 @@ export class LoginComponent implements OnInit {
   errMessage: string;
   model: LoginModel;
   form = new FormGroup({
-    username: new FormControl("", [Validators.required]),
-    password: new FormControl("", [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
+    username: new FormControl("", [Validators.email]),
+    password: new FormControl("", []),
   });
 
   constructor(

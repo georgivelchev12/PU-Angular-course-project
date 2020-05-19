@@ -32,8 +32,8 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default"
             aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" (click)="isShown = !isShown">My Account</a>
-            <a class="dropdown-item" href="#" *ngIf="authService.checkIfSubscriber()">Users Profiles</a>
+            <a class="dropdown-item" routerLink="/my-profile">My Account</a>
+            <a class="dropdown-item" routerLink="/users-profiles" *ngIf="authService.checkIfSubscriber()">Users Profiles</a>
             <a class="dropdown-item" routerLink="/login" (click)="logout()" >Logout</a>
           </div>
         </li>
@@ -42,5 +42,4 @@
 </div>
   </nav>
   <!--/.Navbar -->
-  
-  <app-my-profile *ngIf="isShown"></app-my-profile>
+

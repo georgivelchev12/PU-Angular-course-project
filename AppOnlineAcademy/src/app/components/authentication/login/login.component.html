@@ -8,6 +8,17 @@
         class="form-control bg-transparent border border-info text-white"
         formControlName="username"
       />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          (form.get('username').touched || form.get('username').dirty) &&
+          form.get('username').invalid
+        "
+      >
+        <div *ngIf="form.get('username').errors.email">
+          Invalid Email address
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label>Password</label>
