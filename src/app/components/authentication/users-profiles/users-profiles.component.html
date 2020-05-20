@@ -1,0 +1,138 @@
+
+<div
+  class="profile container mx-auto my-5 py-5 d-flex justify-content-center align-items-center flex-wrap"
+>
+  <div class="col noprofiles" *ngIf="profiles && profiles.length == 0">
+    <div class="alert alert-danger">There are no profiles!</div>
+  </div>
+  <div
+    *ngFor="let profile of profiles"
+    class="m-3 card-outer"
+    [ngClass]="[clickedProfileID == profile['_id'] ? 'scaleUp' : '', 'm-3', 'card-outer']"
+  >
+    <div class="card" *ngIf="profile['_id'] !== currentProfileId">
+      <div class="card-overlay" *ngIf="profile['_kmd']['status'] !== undefined">
+        <h4 class="text-white">DISABLED!</h4>
+        <button
+          class="btn btn-success mt-4"
+          (click)="restoreProfile(profile['_id'])"
+        >
+          Restore profile
+        </button>
+      </div>
+      <div class="card-overlay text-center" *ngIf="profile['_kmd']['roles'] == undefined">
+        <h4 class="text-white">It's an admin account and you can't modify it!</h4>
+      </div>
+      <img
+        class="card-img-top"
+        src="https://account.spinninrecords.com/uploads/profile/1073391/profile.png"
+        height="200"
+      />
+      <div class="card-body text-center">
+        <img
+          class="avatar rounded-circle"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQy30wzxzjGomluNvUsxG0a3cG2aSwOyLXBAYIFR9Hx3s_M1kj7&usqp=CAU"
+          alt="Bologna"
+        />
+        <h4 class="card-title">
+          {{ profile.firstName }} {{ profile.lastName }}
+        </h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{ profile.username }}</h6>
+        <div class="btn-group mt-3 text-white" role="group" aria-label="Basic example">
+          <button
+          [disabled]="profile['_kmd']['roles'] == undefined"
+            class="btn btn-primary"
+            (click)="clickedProfileID = profile['_id']"
+            *ngIf="clickedProfileID !== profile['_id']"
+          >
+            Change Names
+          </button>
+          <button
+          [disabled]="profile['_kmd']['roles'] == undefined"
+            class="btn btn-secondary"
+            (click)="clickedProfileID = ''"
+            *ngIf="clickedProfileID == profile['_id']"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+          <button
+           [disabled]="profile['_kmd']['roles'] == undefined"
+            class="btn btn-warning"
+            (click)="deleteUser(profile['_id'], '?soft=true')"
+            >Block</button
+          >
+          <button
+           [disabled]="profile['_kmd']['roles'] == undefined"
+            class="btn btn-danger"
+            (click)="deleteUser(profile['_id'], '?hard=true')"
+            >Delete</button
+          >
+        </div>
+
+        <form
+          [formGroup]="form"
+          (ngSubmit)="changeNames(profile['_id'])"
+          class="w-100 mt-4"
+          *ngIf="clickedProfileID == profile['_id']"
+        >
+          <div class="form-group">
+            <label>First name</label>
+            <input
+              type="text"
+              class="form-control bg-transparent border border-info text-dark"
+              formControlName="firstName"
+              pattern="^[A-Z][a-z]+$"
+              [(ngModel)]="profile.firstName"
+            />
+            <div
+              class="alert alert-danger p-2 m-0"
+              *ngIf="
+                (form.get('firstName').touched ||
+                  form.get('firstName').dirty) &&
+                form.get('firstName').invalid
+              "
+            >
+              <div *ngIf="form.get('firstName').errors?.required">
+                This field is required
+              </div>
+              <div *ngIf="form.get('firstName').errors?.pattern">
+                Names must contain only letters and start with a capital
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Last name</label>
+            <input
+              type="text"
+              class="form-control bg-transparent border border-info text-dark"
+              formControlName="lastName"
+              pattern="^[A-Z][a-z]+$"
+              [(ngModel)]="profile.lastName"
+            />
+            <div
+              class="alert alert-danger p-2 m-0"
+              *ngIf="
+                (form.get('lastName').touched || form.get('lastName').dirty) &&
+                form.get('lastName').invalid
+              "
+            >
+              <div *ngIf="form.get('lastName').errors?.required">
+                This field is required
+              </div>
+              <div *ngIf="form.get('lastName').errors?.pattern">
+                Names must contain only letters and start with a capital
+              </div>
+            </div>
+          </div>
+          <button
+            class="btn btn-primary mt-4"
+            type="submit"
+            [disabled]="!form.valid"
+          >
+            Change Names
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

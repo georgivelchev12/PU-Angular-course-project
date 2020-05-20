@@ -1,0 +1,27 @@
+<div class="card shadow p-3 mb-5 bg-white rounded w-100" style="max-width: 18em;" id="{{courseId}}" *ngIf="course">
+    <img class="card-img-top cursor-pointer" [src]="course.imgUrl" routerLink="details/{{courseId}}" alt="Card image cap">
+    <div class="card-body">
+      <h4 class="card-title text-info cursor-pointer" routerLink="details/{{courseId}}"  >{{course.title}}</h4>
+      <div class="blockquote-footer mb-3"><strong>{{course.author}}, </strong> {{course.date}} </div>
+      <p class="card-text"> {{(course.description.length>50)? (course.description | slice:0:50)+'...':(course.description)}} </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+          <div class="stars-outer d-inline-block">
+              <div class="stars-inner" [style.width.%]="starsRating"></div>
+          </div>
+          <p class="d-inline ml-2"><strong> {{averageRate}} </strong> ( {{course.rating.length}} )</p>
+      </li>
+    </ul>
+    <div class="card-body px-0">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-danger" (click)="likeOrDislike()">
+                <i class="far fa-heart" *ngIf="!isAlreadyLiked"></i>
+                <i class="far fa-thumbs-down" *ngIf="isAlreadyLiked"></i>
+            </a> 
+            <a routerLink="details/{{courseId}}" class="btn btn-info">Details</a>
+            <a routerLink="edit/{{courseId}}" class="btn btn-warning" *ngIf="authService.checkIfSubscriber()">Edit</a>
+            <a class="btn btn-danger" *ngIf="authService.checkIfSubscriber()" (click)="deleteCourse(courseId)">Delete</a>
+        </div>
+    </div>
+</div>

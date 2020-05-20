@@ -1,0 +1,11 @@
+@mixin breakpoint($type, $prop, $size) {
+  @media (#{$type}-#{$prop}: $size) {
+    @content;
+  }
+}
+
+$white-color: #fff;
+$dark-color: #181818;
+$main-color: #1da154;
+$secondary-color: #0080e2;
+$enable-gradients: 'true';
