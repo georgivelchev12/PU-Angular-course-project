@@ -15,15 +15,12 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(model) {
-    //: LoginModel
     return this.http.post(loginUrl, JSON.stringify(model));
   }
 
   register(model) {
-    //: LoginModel
     return this.http.post(registerUrl, JSON.stringify(model));
   }
-
   logout() {
     return this.http.post(logoutUrl, {});
   }
