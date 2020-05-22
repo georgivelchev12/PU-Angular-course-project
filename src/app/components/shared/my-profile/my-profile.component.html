@@ -37,11 +37,8 @@
           />
           <div
             class="alert alert-danger p-2 m-0"
-            *ngIf="
-              (form.get('firstName').touched || form.get('firstName').dirty) &&
-              form.get('firstName').invalid
-            "
-          >
+            *ngIf="(form.get('firstName').touched || form.get('firstName').dirty) && form.get('firstName').invalid"
+            >
             <div *ngIf="form.get('firstName').errors?.required">
               This field is required
             </div>
@@ -61,10 +58,7 @@
           />
           <div
             class="alert alert-danger p-2 m-0"
-            *ngIf="
-              (form.get('lastName').touched || form.get('lastName').dirty) &&
-              form.get('lastName').invalid
-            "
+            *ngIf="(form.get('lastName').touched || form.get('lastName').dirty) && form.get('lastName').invalid"
           >
             <div *ngIf="form.get('lastName').errors?.required">
               This field is required

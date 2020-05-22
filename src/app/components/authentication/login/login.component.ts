@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
     this.model = this.form.value;
     this.authService.login(this.model).subscribe(
       (data) => {
-        this.toastr.success("You logged in successfully", "Success!"); //you can set this object as value
+        this.toastr.success("You logged in successfully", "Success!"); 
+        //you can set this object as value
         //, {
         //  disableTimeOut: true
         //}

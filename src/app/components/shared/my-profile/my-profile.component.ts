@@ -3,8 +3,6 @@ import { AuthService } from "src/app/core/services/auth-service";
 import {
   FormGroup,
   FormControl,
-  FormControlName,
-  Validator,
   Validators,
 } from "@angular/forms";
 import { NamesModel } from "../../authentication/models/names.model";
@@ -25,6 +23,7 @@ export class MyProfileComponent implements OnInit {
     lastName: new FormControl("", [Validators.required]),
   });
   constructor(public authService: AuthService, private toastr: ToastrService,private router: Router,) {}
+
   ngOnInit() {
     this.authService.myProfile(localStorage.getItem("id")).subscribe(
       (data) => {
@@ -33,6 +32,7 @@ export class MyProfileComponent implements OnInit {
       (err) => {}
     );
   }
+
   changeNames() {
     this.model = this.form.value;
     this.authService
@@ -50,6 +50,7 @@ export class MyProfileComponent implements OnInit {
       );
     this.isChangeNames = false;
   }
+
   deleteUser() {
     if (confirm("Are you sure you want to delete your profile?")) {
       this.authService.deleteOrBlockUser(localStorage.getItem("id"), "?hard=true").subscribe(

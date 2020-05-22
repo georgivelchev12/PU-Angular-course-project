@@ -19,15 +19,14 @@ export class CreateCourseComponent implements OnInit {
     categories: new FormControl("", [Validators.required, Validators.pattern(/^\w+(?:,? \w+)*$/)]), // pattern to check if delimer is comma and space
     imgUrl: new FormControl("", [Validators.required, Validators.pattern(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)]),
   });
+
   constructor(
     private coursesService: CoursesService,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   create() {
     this.model = this.form.value;
@@ -35,7 +34,6 @@ export class CreateCourseComponent implements OnInit {
     this.model.likes = [];
     this.model.rating = [];
     this.model.date = new Date().toLocaleDateString().split(' ')[0];
-    console.log(this.model);
     
     this.coursesService.createCourse(this.model).subscribe(
       (data) => {

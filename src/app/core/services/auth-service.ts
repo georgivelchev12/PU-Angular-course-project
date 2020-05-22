@@ -1,50 +1,50 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 // import { LoginModel } from "./models/login.model";
 
+// const appSecret = `da1610108229464ea57a6d73b5f490d7`;
 const appKey = `kid_rkZRQN7tU`;
-const appSecret = `da1610108229464ea57a6d73b5f490d7`;
-const registerUrl = `https://baas.kinvey.com/user/${appKey}`;
-const loginUrl = `https://baas.kinvey.com/user/${appKey}/login`;
-const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
-const profileUrl = `https://baas.kinvey.com/user/${appKey}/`; //: id
+const baseUrl = `https://baas.kinvey.com/user/${appKey}`;
 
 @Injectable()
 export class AuthService {
-  private currentAuthToken: string;
+  // private currentAuthToken: string;
   constructor(private http: HttpClient) {}
 
   login(model) {
-    return this.http.post(loginUrl, JSON.stringify(model));
+    return this.http.post(`${baseUrl}/login`, JSON.stringify(model));
   }
 
   register(model) {
-    return this.http.post(registerUrl, JSON.stringify(model));
+    return this.http.post(baseUrl, JSON.stringify(model));
   }
   logout() {
-    return this.http.post(logoutUrl, {});
+    return this.http.post(`${baseUrl}/_logout`, {});
   }
 
   myProfile(id) {
-    return this.http.get(profileUrl + id, {});
+    return this.http.get(`${baseUrl}/${id}`, {});
   }
 
   assignRole(userID) {
-    const roleUrl = `https://baas.kinvey.com/user/${appKey}/${userID}/roles/a9e711ad-d0ef-466f-b700-3495cd188ddf`;
+    const roleUrl = `${baseUrl}/${userID}/roles/a9e711ad-d0ef-466f-b700-3495cd188ddf`;
     return this.http.put(roleUrl, {});
   }
-  getUsers(){
-    return this.http.get(registerUrl);
-  }
-  changeNames(userID, model) {
-    return this.http.put(registerUrl + "/" + userID, JSON.stringify(model));
-  }
-  deleteOrBlockUser(userID, softOrHard) {
-    return this.http.delete(registerUrl + "/" + userID + softOrHard);
-  }
-  restoreProfile(userID){
-    return this.http.post(registerUrl + "/" + userID + '/_restore', {});
 
+  getUsers(){
+    return this.http.get(baseUrl);
+  }
+
+  changeNames(userID, model) {
+    return this.http.put(`${baseUrl}/${userID}`, JSON.stringify(model));
+  }
+
+  deleteOrBlockUser(userID, softOrHard) {
+    return this.http.delete(`${baseUrl}/${userID}/${softOrHard}`);
+  }
+
+  restoreProfile(userID){
+    return this.http.post(`${baseUrl}/${userID}/_restore`, {});
   }
 
   checkIfLogged() {
@@ -55,12 +55,13 @@ export class AuthService {
     return localStorage.getItem("isSubscriber") == "undefined"; // if its not subscriber
   }
 
-  get authtoken() {
-    return this.currentAuthToken;
-  }
-  set authtoken(value: string) {
-    this.currentAuthToken = value;
-  }
+  // get authtoken() {
+  //   return this.currentAuthToken;
+  // }
+
+  // set authtoken(value: string) {
+  //   this.currentAuthToken = value;
+  // }
 
   // private createAuthHeader(type: string) {
   //   if (type === "Basic") {

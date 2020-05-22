@@ -52,7 +52,6 @@ export class EditCourseComponent implements OnInit {
       }
     );
   }
-  ngOnDestroy() {}
 
   edit() {
     this.currentCourse.categories = this.currentCourse.categories.toString().split(", ");

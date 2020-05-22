@@ -28,7 +28,10 @@
                                 <input type="range" class="custom-range my-3 d-inline-block mx-3" min="1" max="5"  id="customRange" name="somth" [(ngModel)]="rateCourseNum"> 
                                 <span>5</span>
                             </div>
-                            <button type="submit" class="btn btn-warning my-3" [disabled]="isAlreadyRated || (loaderService.isLoading | async)">{{!isAlreadyRated ? 'Rate course with ' + rateCourseNum : 'Rated!'}} </button>
+                            <button type="submit" class="btn btn-warning my-3" 
+                                    [disabled]="isAlreadyRated || (loaderService.isLoading | async)">
+                                {{!isAlreadyRated ? 'Rate course with ' + rateCourseNum : 'Rated!'}} 
+                            </button>
                         </form>
                     </div>
                 </div>
