@@ -38,6 +38,8 @@
           {{ profile.firstName }} {{ profile.lastName }}
         </h4>
         <h6 class="card-subtitle mb-2 text-muted">{{ profile.username }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{ profile.date }}</h6>
+
         <div class="btn-group mt-3 text-white" role="group" aria-label="Basic example">
           <button
           [disabled]="profile['_kmd']['roles'] == undefined"
