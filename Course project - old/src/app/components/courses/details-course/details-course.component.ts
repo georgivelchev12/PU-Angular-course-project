@@ -37,17 +37,10 @@ export class DetailsCourseComponent implements OnInit {
     this.coursesService.get(this.courseId).subscribe(
       (data) => {
         this.course = <CourseModel>data;
-        this.averageRate = this.course.rating.length > 0 
-                              ? Number((this.course.rating
-                                .reduce((a, b) => a + b['rate'], 0) / this.course.rating.length)
-                                .toFixed(1)) 
-                              : 0;
-        this.starsRating = this.course.rating.length !== 0 
-                              ? Math.round((this.averageRate / 5) * 100) 
-                              : 0;
+        this.averageRate = this.course.rating.length > 0 ? Number((this.course.rating.reduce((a, b) => a + b['rate'], 0) / this.course.rating.length).toFixed(1)) : 0;
+        this.starsRating = this.course.rating.length !== 0 ? Math.round((this.averageRate / 5) * 100) : 0;
         this.isAlreadyRated = this.course.rating.find((obj) =>obj['name'] == localStorage.getItem('email')) !== undefined;
         this.isAlreadyLiked = this.course.likes.includes(localStorage.getItem('email'));
-        
       },
       (err) => {
         this.toastr.error(err.error.description, "Error!");
