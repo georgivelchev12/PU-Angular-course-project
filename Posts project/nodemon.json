@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_ATLAS_PW": "DHXzkmNuUN29rOwM",
+        "JWT_KEY": "secret_this_should_be_longer",
+        "BACKEND_IMAGE_FOLDER": "backend/"
+    }
+}
