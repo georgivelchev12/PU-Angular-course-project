@@ -1,0 +1,182 @@
+@import url("https://use.fontawesome.com/releases/v5.0.9/css/all.css");
+
+.btn-outline-danger {
+  color: #ff6877;
+  border-color: #ff6877;
+  &:hover {
+    color: #fff;
+    background-color: #ff6877;
+  }
+  &.liked {
+    background-color: #ff6877;
+    color: #fff;
+  }
+}
+
+
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/_variables";
+
+@mixin breakpoint($type, $prop, $size) {
+  @media (#{$type}-#{$prop}: $size) {
+    @content;
+  }
+}
+
+$white-color: #fff;
+$dark-color: #181818;
+$main-color: #1da154;
+$secondary-color: #0080e2;
+$enable-gradients: "true";
+
+//overriten classes from bootstrap
+.bg-dark {
+  background-color: $dark-color !important;
+}
+.border-info {
+  border-color: $secondary-color !important;
+}
+.btn:disabled {
+  cursor: no-drop;
+}
+
+//utilities
+.main-color-bg {
+  background: $main-color;
+}
+.secondary-color-bg {
+  background: $secondary-color;
+}
+
+.btn-main {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  display: block;
+  border: 1px solid $secondary-color;
+  border-radius: 2px;
+  font-weight: 500;
+  background: $secondary-color;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.btn-main:hover {
+  background-color: transparent;
+  border: 1px solid $white-color;
+}
+
+.btn-secondary-2 {
+  padding: 0.7rem 1rem;
+
+  display: block;
+  color: white;
+  background: none;
+  border: 1px solid $white-color;
+  border-radius: 2px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none !important;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.btn-secondary-2:hover {
+  border-color: $secondary-color;
+  color: $secondary-color;
+}
+
+.btn-secondary-2,
+.or,
+.links {
+  width: 60%;
+  @include breakpoint(max, width, 400px) {
+    width: 85%;
+  }
+}
+
+.or {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.or .bar {
+  flex: auto;
+  border: none;
+  height: 1px;
+  background: #aaa;
+}
+
+.or span {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.stars-outer {
+  position: relative;
+  &:before {
+    content: "\f005 \00a0 \f005 \00a0 \f005 \00a0 \f005 \00a0 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #ccc;
+  }
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    &:before {
+      content: "\f005 \00a0 \f005 \00a0 \f005 \00a0 \f005 \00a0 \f005";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      color: orange;
+    }
+  }
+}
+
+.full-wh-spinner {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #fff, $alpha: 0.7);
+  top: 0;
+  .spinner-border {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spinner-border 0.75s linear infinite,
+      toggleColors 3s linear infinite;
+  }
+}
+
+@keyframes toggleColors {
+  0% {
+    color: $blue;
+  }
+  20% {
+    color: $cyan;
+  }
+  40% {
+    color: $purple;
+  }
+  60% {
+    color: $pink;
+  }
+  80% {
+    color: $orange;
+  }
+  100% {
+    color: $green;
+  }
+}

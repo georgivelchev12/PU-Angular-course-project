@@ -1,0 +1,32 @@
+<div class="text-white d-flex flex-column justify-content-center align-items-center mb-5">
+  <form class="w-100" [formGroup]="form" (ngSubmit)="login()">
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" for="email" class="form-control bg-transparent border border-info text-white"
+        formControlName="email" />
+      <div class="alert alert-danger" *ngIf="
+          (form.get('email').touched || form.get('email').dirty) &&
+          form.get('email').invalid
+        ">
+        <div *ngIf="form.get('email').errors.email">
+          Invalid Email address
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control bg-transparent border border-info text-white"
+        formControlName="password" />
+    </div>
+    <button class="btn btn-primary btn-main mt-4" type="submit" [disabled]="!form.valid">
+      Sign In
+    </button>
+  </form>
+
+  <div class="or my-3">
+    <hr class="bar" />
+    <span> OR </span>
+    <hr class="bar" />
+  </div>
+  <a [routerLink]="['/register']" class="btn-secondary-2">Create an account</a>
+</div>

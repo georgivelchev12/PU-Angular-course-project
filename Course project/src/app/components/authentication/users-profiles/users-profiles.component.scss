@@ -1,0 +1,63 @@
+
+@import url("https://use.fontawesome.com/releases/v5.0.9/css/all.css");
+
+.noprofiles {
+  margin: 155px 0;
+}
+.container {
+  max-width: 1500px;
+}
+
+.card {
+  position: relative;
+  max-width: 350px;
+  width: 100%;
+  transition: all 0.5s;
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba($color: red, $alpha: 0.7);
+    z-index: 5;
+    &.text-center{
+    background: rgba($color: #17a2b8, $alpha: 0.7);
+
+    }
+    h4 {
+      font-size: 30px;
+      letter-spacing: 1.5px;
+    }
+  }
+}
+.card-outer {
+  transition: all 0.5s;
+}
+.scaleUp {
+  width: 100%;
+  height: 101%;
+  background: rgba($color: #000000, $alpha: 0.5);
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .card {
+    transform: rotateY(180deg);
+    &>div, img{
+      transform: rotateY(-180deg) !important;
+    }
+  }
+}
