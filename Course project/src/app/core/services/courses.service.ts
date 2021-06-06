@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CourseModel } from 'src/app/components/courses/course.model';
 import { environment } from 'src/environments/environment';
+import { CategoryModel } from 'src/app/components/courses/category.model';
 
 const baseUrl = environment.apiUrl + '/courses'; 
 
@@ -83,5 +84,9 @@ export class CoursesService {
         id: course['_id'],
       };
     });
+  }
+
+  getCategories(){
+    return this.http.get<{ message: string; categories: [CategoryModel] }>(`${environment.apiUrl}/categories`)
   }
 }

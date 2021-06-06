@@ -1,3 +1,5 @@
+import { CategoryModel } from "./category.model";
+
 export class CourseModel {
   constructor(
     public id: string,
@@ -8,6 +10,6 @@ export class CourseModel {
     public date: string,
     public likes: Array<string>,
     public rating: Array<{ email: string; rate: number }>,
-    public categories: Array<string>
+    public categories: Array<CategoryModel>
   ) {}
 }

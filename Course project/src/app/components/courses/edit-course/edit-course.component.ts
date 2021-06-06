@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CoursesService } from 'src/app/core/services/courses.service';
+import { CategoryModel } from '../category.model';
 import { CourseModel } from '../course.model';
 import { mimeType } from '../create-course/myme-type.validator';
 
@@ -19,10 +20,8 @@ export class EditCourseComponent implements OnInit {
       Validators.pattern(/[A-Z][a-z]+ [A-Z][a-z]+/),
     ]),
     description: new FormControl('', [Validators.required]),
-    categories: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^\w+(?:,? \w+)*$/),
-    ]),
+    categories: new FormArray([], [Validators.required]),
+    // categories: new FormControl('', [Validators.required]),
     image: new FormControl(null, {
       validators: [Validators.required],
       asyncValidators: [mimeType],
@@ -32,7 +31,8 @@ export class EditCourseComponent implements OnInit {
   imagePreview: string;
   courseId: string;
   currentCourse: CourseModel;
-
+  allCategories: Array<CategoryModel>;
+  selectedCategories;
   constructor(
     public coursesService: CoursesService,
     private route: ActivatedRoute,
@@ -46,14 +46,34 @@ export class EditCourseComponent implements OnInit {
       (data) => {
         // data[0] database returns array of one element (wanted element)
         this.currentCourse = data[0];
-        this.currentCourse.categories = data[0]['categories'].join(', ');
         this.imagePreview = this.currentCourse.imgFile;
         this.form.controls.image.setValue(this.currentCourse.imgFile);
+        this.getAllCategories();
       },
       (err) => {
         this.toastr.error(err.error.message, 'Error!');
       }
     );
+  }
+  getAllCategories(){
+    this.coursesService.getCategories().subscribe(({categories}) => {
+      this.allCategories = categories;
+      this.allCategories.forEach((c) => {
+        // Select form checkboxes which current course has. (Init form checkboxes)
+        let containsCategory = this.currentCourse.categories.find(catInCourse => catInCourse._id == c._id) || false;
+        (this.form.get('categories') as FormArray).push(new FormControl(containsCategory));
+      });
+      this.getSelectedCategories()
+    });
+  }
+  
+  getSelectedCategories() {
+    this.selectedCategories = this.form.controls.categories['controls'].map((el, i) => {
+      return el.value && ({_id: this.allCategories[i]._id ,title: this.allCategories[i].title});
+    })
+    // Get selected categories NAMES
+    this.selectedCategories = this.selectedCategories.filter(name => name !== false);
+
   }
 
   edit() {
@@ -61,9 +81,10 @@ export class EditCourseComponent implements OnInit {
       const updatedCourse = {
         // Copy course and update only needed information
         ...this.currentCourse,
-        categories: this.currentCourse.categories.toString().split(', '),
-        imgFile: this.form.value.image ? this.form.value.image : this.currentCourse.imgFile,
+        categories: this.selectedCategories,
+        imgFile: this.form.value.image || this.currentCourse.imgFile,
       };
+      
 
       this.coursesService.edit(this.courseId, updatedCourse).subscribe(
         (data) => {

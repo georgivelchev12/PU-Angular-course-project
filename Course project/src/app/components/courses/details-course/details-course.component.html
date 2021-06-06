@@ -43,7 +43,9 @@
       <div class="row m-0">
         <div class="col-sm-12 col-md-12 col-lg-4 border-left my-2 text-secondary">
           <span class="d-block">Categories <i class="fas fa-th"></i></span>
-          <strong> {{course.categories.join(', ')}}</strong>
+          <strong *ngFor="let category of course.categories; let i = index"> 
+            {{category.title}}{{course.categories.length - 1 == i ? '' : ', '}}
+          </strong>
         </div>
 
         <div class="col-sm-12 col-md-12 col-lg-4 border-left my-2" style="color: #ff6877;">
