@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login-register-template',
@@ -8,9 +9,12 @@ import { Router } from '@angular/router';
 })
 export class LoginRegisterTemplateComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    if(this.authService.isAuthenticated){
+      this.router.navigateByUrl('/')
+    }
   }
 
 }

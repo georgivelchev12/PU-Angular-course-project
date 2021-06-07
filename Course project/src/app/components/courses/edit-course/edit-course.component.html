@@ -62,7 +62,7 @@
             {{category.title}}
           </span>
           <label class="control-label d-block">Select categories</label>
-          <div formGroupName="categories" *ngIf="form.controls.categories">
+          <div formGroupName="categories">
             <div class="form-check w-25 d-inline-block" 
             *ngFor="let category of form.controls.categories.controls; let i = index">
               <input 
@@ -75,19 +75,9 @@
               <label class="form-check-label" for="{{allCategories[i]._id}}">{{allCategories[i].title}}</label>
             </div>
           </div>
-
-          <!-- <input type="email" class="form-control" placeholder="Web development, Music, Business"
-            formControlName="categories" [(ngModel)]="currentCourse.categories"/> -->
-          <div class="alert alert-danger" *ngIf="
-              (form.get('categories').touched ||
-                form.get('categories').dirty) &&
-              form.get('categories').invalid
-            ">
-            <div *ngIf="form.get('categories').errors.required">
-              Categories are required
-            </div>
-            <div *ngIf="form.get('categories').errors?.pattern">
-              Categories must be separated by comma and space
+          <div class="alert alert-danger" *ngIf="form.get('categories').invalid">
+            <div *ngIf="form.get('categories').errors.error">
+              You must select at least one category
             </div>
           </div>
         </div>
